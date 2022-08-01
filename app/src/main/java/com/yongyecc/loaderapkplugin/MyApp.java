@@ -29,18 +29,12 @@ public class MyApp extends Application {
         super.attachBaseContext(base);
         mApp = this;
         Reflection.unseal(base);
+    }
 
-//        new Thread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    HookManager.getInstance(mApp).loadPluginAPk();
-//                } catch (Exception e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }).start();
+    @Override
+    public void onCreate() {
 
+        super.onCreate();
         try{
             HookManager.getInstance(mApp).loadPluginAPk();
             HookManager.getInstance(mApp).hookAMSAction();
@@ -49,13 +43,6 @@ public class MyApp extends Application {
         }catch (Exception e){
             e.printStackTrace();
         }
-
-
-    }
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
 
     }
 }
